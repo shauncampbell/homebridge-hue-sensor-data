@@ -1,0 +1,22 @@
+{
+  "name": "homebridge-hue-sensor-data",
+  "version": "0.0.2",
+  "description": "Expose Hue Sensor data for homebridge",
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "engines": {
+    "node": ">=0.12.0",
+    "homebridge": ">=0.2.0"
+  },
+  "author": {
+    "name": "shauncampbell"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/shauncampbell/homebridge-hue-sensor-data"
+  },
+  "dependencies": {
+    "huejay": "1.4.2"
+  }
+}
