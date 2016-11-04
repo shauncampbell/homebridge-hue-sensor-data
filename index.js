@@ -13,7 +13,7 @@ module.exports = function(homebridge) {
 	
 	//	Create the characteristic for the button press id
 	Characteristic.ButtonPressed = function() {
-		Characteristic.call(this, 'Button Pressed','0000006E-0000-1000-8000-0037BB765301');
+		Characteristic.call(this, 'Button Pressed','846f7935-a169-404d-8aeb-77d293611c98');
 		this.setProps({
 			format: Characteristic.Formats.INT,
 			unit: Characteristic.Units.NONE,
@@ -25,11 +25,11 @@ module.exports = function(homebridge) {
 		this.value = this.getDefaultValue();
 	};
 	inherits(Characteristic.ButtonPressed, Characteristic);
-	Characteristic.ButtonPressed.UUID = '0000006E-0000-1000-8000-0037BB765301';
+	Characteristic.ButtonPressed.UUID = '846f7935-a169-404d-8aeb-77d293611c98';
 	
 	//	Create the characteristic for the button name
 	Characteristic.ButtonName = function() {
-		Characteristic.call(this, 'Button Name','0000006E-0000-1000-8000-0037BB765302');
+		Characteristic.call(this, 'Button Name','520d4c22-ad4f-4fb0-ac65-535ec094373d');
 		this.setProps({
 			format: Characteristic.Formats.STRING,
 			perms: [Characteristic.Perms.READ, Characteristic.Perms.NOTIFY]
@@ -37,7 +37,7 @@ module.exports = function(homebridge) {
 		this.value = this.getDefaultValue();
 	};
 	inherits(Characteristic.ButtonName, Characteristic);
-	Characteristic.ButtonName.UUID = '0000006E-0000-1000-8000-0037BB765302';
+	Characteristic.ButtonName.UUID = '520d4c22-ad4f-4fb0-ac65-535ec094373d';
 	
 	homebridge.registerAccessory("homebridge-hue-sensor-data", "HueSensor", HueSensorAccessory);
 }
