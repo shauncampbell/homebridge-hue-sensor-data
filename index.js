@@ -2,6 +2,7 @@
 
 var Accessory, Service, Characteristic;
 let huejay = require('huejay');
+var moment = require('moment');
 var hue;
 
 module.exports = function(homebridge) {
@@ -49,6 +50,7 @@ function HueSensorAccessory(log, config, api) {
 	this.lightLevel = 0.0001;
 	this.presence = true;
 	this.switchBtn = 0;
+	this.switchButtonLastPressed = moment('1970-01-01');
 	
 	var platform = this;
 	
@@ -76,6 +78,7 @@ function HueSensorAccessory(log, config, api) {
 						platform.presence = sensor.state.attributes.attributes.presence;
 					} else if (config.sensors[uniqueid] === 'ZLLSwitch') {
 						platform.switchBtn = sensor.state.attributes.attributes.buttonevent;
+						platform.switchButtonLastPressed = moment(sensor.state.attributes.attributes.lastupdated);
 					}
 				}
 			}
@@ -124,7 +127,8 @@ HueSensorAccessory.prototype = {
 		callback(null, state);
 	},
 	getDimmerSwitchButtonActive: function(callback) {
-		callback(null, true);
+		var on = this.switchButtonLastPressed.isAfter(moment().subtract(10, 'seconds'));
+		callback(null, on);
 	},
 	getServices: function() {
 		
@@ -168,7 +172,8 @@ HueSensorAccessory.prototype = {
 				      .on('get', this.getDimmerSwitchButtonName.bind(this));
 					  
 				sensor.getCharacteristic(Characteristic.On)
-					  .on('get', this.getDimmerSwitchButtonActive.bind(this));
+					  .on('get', this.getDimmerSwitchButtonActive.bind(this))
+					  .set('set', this.setDimmerSwitch);
 				
 				sensors.push(sensor);
 			}

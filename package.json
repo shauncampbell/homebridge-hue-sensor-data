@@ -17,6 +17,7 @@
     "url": "git://github.com/shauncampbell/homebridge-hue-sensor-data"
   },
   "dependencies": {
+    "moment": "^2.9.0",
     "huejay": "1.4.2"
   }
 }
