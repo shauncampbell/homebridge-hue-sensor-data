@@ -172,8 +172,7 @@ HueSensorAccessory.prototype = {
 				      .on('get', this.getDimmerSwitchButtonName.bind(this));
 					  
 				sensor.getCharacteristic(Characteristic.On)
-					  .on('get', this.getDimmerSwitchButtonActive.bind(this))
-					  .set('set', this.setDimmerSwitch);
+				      .on('get', this.getDimmerSwitchButtonActive.bind(this));
 				
 				sensors.push(sensor);
 			}
